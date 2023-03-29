@@ -1,9 +1,10 @@
 #!/bin/bash
 
 getAptPackage(){
-    printf "\n\n==> Getting environment packages\n"
-    export DEBIAN_FRONTEND=noninteractive
-    apt-get update && apt-get install -y vim ntp zip unzip curl wget build-essential fp-compiler python python3 python3-requests openjdk-8-jdk openjdk-11-jdk
+    printf "\n\n==> apt packages already installed in dockerfile"
+    # printf "\n\n==> Getting environment packages\n"
+    # export DEBIAN_FRONTEND=noninteractive
+    # apt-get update && apt-get install -y vim ntp zip unzip curl wget build-essential fp-compiler python python3 python3-requests openjdk-8-jdk openjdk-11-jdk
 }
 
 setJudgeConf(){

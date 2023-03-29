@@ -9,16 +9,17 @@ _judger_socket_port_=2333
 _judger_socket_password_=_judger_socket_password_
 
 getAptPackage(){
-    printf "\n\n==> Getting environment packages\n"
+    printf "\n\n==> apt packages already installed in dockerfile"
+    # printf "\n\n==> Getting environment packages\n"
     #Update apt sources and install
-    export DEBIAN_FRONTEND=noninteractive
-    dpkg -s gnupg 2>/dev/null || (apt-get update && apt-get install -y gnupg)
-    echo "deb http://ppa.launchpad.net/stesie/libv8/ubuntu bionic main" | tee /etc/apt/sources.list.d/stesie-libv8.list && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D858A0DF
-    apt-get update && apt-get install -y git vim ntp zip unzip curl wget apache2 libapache2-mod-xsendfile libapache2-mod-php php php-dev php-pear php-zip php-mysql php-mbstring g++ cmake re2c libv8-7.5-dev libyaml-dev
-    #Install PHP extensions
-    yes | pecl install yaml
-    git clone https://github.com/phpv8/v8js.git --depth=1 /tmp/pear/download/v8js-master && cd /tmp/pear/download/v8js-master
-    phpize && ./configure --with-php-config=/usr/bin/php-config --with-v8js=/opt/libv8-7.5 && make install && cd -
+    # export DEBIAN_FRONTEND=noninteractive
+    # dpkg -s gnupg 2>/dev/null || (apt-get update && apt-get install -y gnupg)
+    # echo "deb http://ppa.launchpad.net/stesie/libv8/ubuntu bionic main" | tee /etc/apt/sources.list.d/stesie-libv8.list && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D858A0DF
+    # apt-get update && apt-get install -y git vim ntp zip unzip curl wget apache2 libapache2-mod-xsendfile libapache2-mod-php php php-dev php-pear php-zip php-mysql php-mbstring g++ cmake re2c libv8-7.5-dev libyaml-dev
+    # #Install PHP extensions
+    # yes | pecl install yaml
+    # git clone https://github.com/phpv8/v8js.git --depth=1 /tmp/pear/download/v8js-master && cd /tmp/pear/download/v8js-master
+    # phpize && ./configure --with-php-config=/usr/bin/php-config --with-v8js=/opt/libv8-7.5 && make install && cd -
 }
 
 setLAMPConf(){
