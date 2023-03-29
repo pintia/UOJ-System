@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DATA_DIR="${DATA_DIR:=/data}"
 docker build -t uoj-system:db --file install/db/Dockerfile .
 docker build -t uoj-system:web --file install/web/Dockerfile .
 docker build -t uoj-system:judger --file install/judger/Dockerfile .
@@ -10,7 +11,7 @@ docker stop uoj-db
 docker network rm uoj
 
 docker network create uoj
-docker run --name uoj-db -d --rm --network=uoj -e MYSQL_DATABASE=app_uoj233 -e MYSQL_ROOT_PASSWORD=root uoj-system:db
+docker run --name uoj-db -d --rm --network=uoj -v${DATA_DIR}:/var/lib/mysql -e MYSQL_DATABASE=app_uoj233 -e MYSQL_ROOT_PASSWORD=root uoj-system:db
 sleep 5
 docker run --name uoj-judger -d --rm --cap-add SYS_PTRACE --network=uoj -e UOJ_PROTOCOL=http -e UOJ_HOST=uoj-web -e JUDGER_NAME=compose_judger -e JUDGER_PASSWORD=_judger_password_ -e SOCKET_PORT=2333 -e SOCKET_PASSWORD=_judger_socket_password_ uoj-system:judger
 docker run --name uoj-web -d --rm --cap-add SYS_PTRACE --network=uoj -p 8080:80 uoj-system:web
