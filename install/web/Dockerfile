@@ -20,7 +20,7 @@ RUN sh -c "echo \"deb [trusted=yes] http://ppa.launchpad.net/stesie/libv8/ubuntu
 ADD . uoj
 
 #Install environment and set startup script
-RUN cd uoj/install/web && sh install.sh -p && echo "\
+RUN cd uoj/install/web && sh install.sh -p -i && echo "\
 #!/bin/sh\n\
 if [ ! -f \"/var/uoj_data/.UOJSetupDone\" ]; then\n\
   cd /opt/uoj/install/web && sh install.sh -i\n\

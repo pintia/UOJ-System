@@ -48,7 +48,7 @@ UOJEOF
     a2enmod rewrite headers && sed -i -e '172s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
     #Create UOJ session save dir and make PHP extensions available
     mkdir --mode=733 /var/lib/php/uoj_sessions && chmod +t /var/lib/php/uoj_sessions
-    sed -i -e '912a\extension=v8js.so\nextension=yaml.so' /etc/php/7.2/apache2/php.ini
+    sed -i -e '912a\extension=v8js.so\nextension=yaml.so' /etc/php/7.4/apache2/php.ini
 }
 
 setWebConf(){
